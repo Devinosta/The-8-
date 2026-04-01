@@ -26,7 +26,6 @@
 
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.2s; overflow: hidden; }
         
-        /* Login Overlay */
         #login-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--primary); display: flex; align-items: center; justify-content: center;
@@ -48,7 +47,6 @@
 
         .card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); border-top: 3px solid var(--accent); margin-bottom: 15px; }
         
-        /* Scam Warning Style */
         .warning-card { border-top: 4px solid var(--danger); background: #fff5f5; color: #a94442; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; }
         .dark-mode .warning-card { background: #2d1a1a; color: #ff9999; border-color: var(--danger); }
 
@@ -85,12 +83,13 @@
     
     <div class="warning-card">
         <strong>⚠️ ANTI-SCAM ALERT:</strong><br>
-        To protect your money, please be advised that we <strong>ONLY</strong> operate using these two official numbers:
+        We <strong>ONLY</strong> operate using these official contacts:
         <ul style="margin: 5px 0; padding-left: 20px;">
-            <li><strong>+63 956 418 4511</strong> (Main Support)</li>
-            <li><strong>+965 6561 0383</strong> (Alternative)</li>
+            <li><strong>+63 956 418 4511</strong> (PH Support)</li>
+            <li><strong>+965 6561 0383</strong> (Intl/WABD Support)</li>
+            <li><strong>devinostaadin@aol.com</strong> (Official Email)</li>
         </ul>
-        If any other number contacts you claiming to be <em>The 8% Lending</em>, it is a scam. <strong>Never send money to unlisted accounts.</strong>
+        Do not send money to any other account.
     </div>
 
     <div class="card" style="border-top: 3px solid #007bff;">
@@ -109,7 +108,7 @@
 
         <div class="card">
             <h3 style="margin-top:0;">Quick Info</h3>
-            <p style="font-size: 0.8rem; line-height: 1.5;">● 8% Fixed Monthly Interest<br>● Fast 24-hour Approval<br>● Iloilo City Service Area</p>
+            <p style="font-size: 0.8rem; line-height: 1.5;">● 8% Fixed Monthly Interest<br>● Fast 24-hour Approval<br>● Send Receipt via WhatsApp</p>
         </div>
     </div>
 
@@ -117,13 +116,17 @@
         <h3 style="text-align: center; margin-top:0;">💳 Payment Center</h3>
         <div class="payment-item">
             <div><strong>GCash / Maya</strong><br><small>0956 418 4511</small></div>
-            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Payment%20Receipt.'">Send Receipt</button>
+            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Receipt.'">Receipt</button>
+        </div>
+        <div class="payment-item" style="border-color: #00bfa5;">
+            <div><strong>WABD</strong><br><small>+965 6561 0383</small></div>
+            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem; background: #00bfa5; border: none; color: white;" onclick="window.location.href='https://wa.me/96565610383?text=I%20want%20to%20pay%20via%20WABD.'">Pay via WABD</button>
         </div>
     </div>
 
     <div class="card" style="text-align: center; border: none;">
-        <button class="btn" style="width: auto; padding: 12px 40px; background: #25d366; color: white; border: none;" onclick="window.location.href='https://wa.me/639564184511'">
-            💬 WhatsApp Official Support
+        <button class="btn" style="width: auto; padding: 12px 40px; background: #25d366; color: white; border: none;" onclick="window.location.href='mailto:devinostaadin@aol.com'">
+            ✉️ Email Official Support
         </button>
     </div>
 </div>
@@ -139,7 +142,7 @@
             document.getElementById('main-content').style.filter = 'none';
             document.body.style.overflow = 'auto';
         } else {
-            alert("Unauthorized access. Check password.");
+            alert("Unauthorized access.");
         }
     }
 
