@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The 8% Lending | Official Site</title>
-   <link rel="manifest" href="manifest.json">
+    
+    <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="8% Lending">
     <link rel="apple-touch-icon" href="icon.png">
     <meta name="theme-color" content="#1a1a1a">
+
     <style>
         :root {
             --primary: #1a1a1a;
@@ -40,10 +42,10 @@
         }
         .login-box { background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--accent); width: 300px; }
 
-        header { background: var(--card-bg); padding: 1.5rem 1rem; text-align: center; border-bottom: 4px solid var(--accent); position: relative; }
-        .logo-image { max-width: 220px; height: auto; }
-        .settings-container { position: absolute; top: 15px; right: 15px; }
-        .settings-btn { background: var(--primary); color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+        header { background: #000000; padding: 1rem; text-align: center; border-bottom: 4px solid var(--accent); position: relative; }
+        .logo-image { max-height: 120px; width: auto; max-width: 90%; }
+        .settings-container { position: absolute; top: 15px; right: 15px; z-index: 10; }
+        .settings-btn { background: #1a1a1a; color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
         
         .options-menu { display: none; position: absolute; right: 0; top: 40px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; width: 140px; z-index: 100; padding: 10px; }
         .options-menu button { width: 100%; padding: 8px; margin-bottom: 5px; border: none; background: var(--bg); color: var(--text); border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.8rem; }
@@ -82,7 +84,7 @@
             <button onclick="setTheme('dark')">🌙 Dark Mode</button>
         </div>
     </div>
-    <img src="The%208%25%20Lending%202.png" alt="The 8% Lending Logo" class="logo-image">
+    <img src="icon.png" alt="The 8% Lending Logo" class="logo-image">
 </header>
 
 <div class="container" id="main-content">
@@ -158,7 +160,6 @@
             const data = await response.json();
             liveRate = data.rates.PHP;
             
-            // Get current local time for the "Last Updated" display
             const now = new Date();
             const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             
