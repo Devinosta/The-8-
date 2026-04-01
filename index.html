@@ -24,38 +24,30 @@
         }
 
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.2s; }
-        
-        /* Header without shadows */
         header { background: var(--card-bg); padding: 2rem 1rem; text-align: center; border-bottom: 4px solid var(--accent); position: relative; }
-        
         .logo-image { max-width: 250px; height: auto; }
 
-        /* Settings Toggle */
         .settings-container { position: absolute; top: 20px; right: 20px; }
-        .settings-btn { background: var(--primary); color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 1rem; font-weight: bold; }
+        .settings-btn { background: var(--primary); color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 0.9rem; font-weight: bold; }
         
         .options-menu { 
             display: none; position: absolute; right: 0; top: 45px; 
             background: var(--card-bg); border: 1px solid var(--border); 
             border-radius: 8px; width: 150px; z-index: 100; padding: 10px;
         }
-        .options-menu button { width: 100%; padding: 10px; margin-bottom: 5px; border: none; background: var(--bg); color: var(--text); border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.9rem; }
-        .options-menu button:hover { background: var(--accent); color: var(--primary); }
+        .options-menu button { width: 100%; padding: 10px; margin-bottom: 5px; border: none; background: var(--bg); color: var(--text); border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.85rem; }
 
         .container { max-width: 800px; margin: auto; padding: 20px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
-        /* Card with NO shadows, just clean borders */
-        .card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); border-top: 3px solid var(--accent); transition: 0.2s; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); border-top: 3px solid var(--accent); margin-bottom: 15px; }
         
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); box-sizing: border-box; font-size: 1rem; }
-        
         .btn { background: var(--primary); color: var(--accent); border: 1px solid var(--accent); padding: 14px; cursor: pointer; width: 100%; font-size: 1rem; border-radius: 6px; font-weight: bold; transition: 0.2s; }
         .btn:hover { opacity: 0.8; }
         
         #result { margin-top: 15px; padding: 15px; background: rgba(255, 193, 7, 0.05); border-radius: 6px; color: var(--accent); font-weight: bold; text-align: center; border: 1px solid var(--accent); }
-        
         .payment-item { padding: 12px; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 
         footer { text-align: center; padding: 3rem; color: #999; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 40px; }
@@ -75,6 +67,14 @@
 </header>
 
 <div class="container">
+    
+    <div class="card" style="border-top: 3px solid #007bff;">
+        <h3 style="margin-top:0; color: #007bff;">👤 Client Portal</h3>
+        <p style="font-size: 0.9rem;">Already have a loan? Enter your Reference Number to check your current status.</p>
+        <input type="text" id="refNum" placeholder="Reference Number (e.g. 8L-1234)">
+        <button class="btn" style="background: #007bff; border-color: #007bff; color: white;" onclick="checkStatus()">Check My Status</button>
+    </div>
+
     <div class="grid">
         <div class="card">
             <h3 style="margin-top:0;">Loan Calculator</h3>
@@ -86,11 +86,11 @@
 
         <div class="card">
             <h3 style="margin-top:0;">Requirements</h3>
-            <p style="font-size: 0.9rem; line-height: 1.6;">● Valid Government ID<br>● Latest Payslip / Income<br>● Proof of Billing<br>● Active Mobile Number</p>
+            <p style="font-size: 0.85rem; line-height: 1.6;">● Valid Government ID<br>● Latest Payslip / Income<br>● Proof of Billing<br>● Active Mobile Number</p>
         </div>
     </div>
 
-    <div class="card" style="margin-top: 20px;">
+    <div class="card">
         <h3 style="text-align: center; margin-top:0;">💳 Payment Center</h3>
         <div class="payment-item">
             <div><strong>GCash</strong><br><small>0956 418 4511</small></div>
@@ -100,16 +100,11 @@
             <div><strong>Maya</strong><br><small>0956 418 4511</small></div>
             <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Maya%20receipt.'">Receipt</button>
         </div>
-        <div class="payment-item">
-            <div><strong>Cash</strong><br><small>Iloilo City Area</small></div>
-            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=I%20want%20to%20pay%20via%20Cash.'">Schedule</button>
-        </div>
     </div>
 
-    <div class="card" style="margin-top: 20px; text-align: center; background: var(--primary); color: var(--accent); border: none;">
-        <h3>Get Started Today</h3>
+    <div class="card" style="text-align: center; background: var(--primary); color: var(--accent); border: none;">
         <button class="btn" style="width: auto; padding: 12px 40px; background: #25d366; color: white; border: none;" onclick="window.location.href='https://wa.me/639564184511'">
-            💬 WhatsApp Us
+            💬 Message via WhatsApp
         </button>
     </div>
 </div>
@@ -128,6 +123,16 @@
         }
     }
 
+    function checkStatus() {
+        const ref = document.getElementById('refNum').value;
+        if(ref.trim() === "") {
+            alert("Please enter your Reference Number.");
+            return;
+        }
+        // Redirects to WhatsApp with a pre-filled message for the admin to check
+        window.location.href = `https://wa.me/639564184511?text=Hi!%20I%20would%20like%20to%20check%20the%20status%20of%20my%20loan.%20Reference%20Number:%20${ref}`;
+    }
+
     function toggleMenu() {
         const menu = document.getElementById('optionsMenu');
         menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
@@ -142,7 +147,6 @@
         document.getElementById('optionsMenu').style.display = 'none';
     }
 
-    // Close menu when clicking outside
     window.onclick = function(event) {
         if (!event.target.matches('.settings-btn')) {
             document.getElementById('optionsMenu').style.display = 'none';
