@@ -83,13 +83,32 @@
     
     <div class="warning-card">
         <strong>⚠️ ANTI-SCAM ALERT:</strong><br>
-        We <strong>ONLY</strong> operate using these official contacts:
+        Verify your transaction via our official contacts only:
         <ul style="margin: 5px 0; padding-left: 20px;">
+            <li><strong>+965 6561 0383</strong> (Intl/WAMD)</li>
             <li><strong>+63 956 418 4511</strong> (PH Support)</li>
-            <li><strong>+965 6561 0383</strong> (Intl/WAMD Support)</li>
-            <li><strong>devinostaadin@aol.com</strong> (Official Email)</li>
+            <li><strong>devinostaadin@aol.com</strong></li>
         </ul>
-        Do not send money to any other account.
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3 style="margin-top:0;">Loan Calculator</h3>
+            <label style="font-size: 0.8rem;">Amount (KWD)</label>
+            <input type="number" id="amount" step="0.001" placeholder="0.000">
+            <button class="btn" onclick="calculate()">Calculate Total</button>
+            <div id="result" style="display:none; margin-top: 10px; font-weight: bold; color: var(--accent); text-align: center; font-size: 0.9rem;"></div>
+        </div>
+
+        <div class="card" style="border-top-color: #28a745;">
+            <h3 style="margin-top:0; color: #28a745;">KWD to PHP</h3>
+            <label style="font-size: 0.8rem;">Enter KWD Amount</label>
+            <input type="number" id="kwdInput" step="0.001" placeholder="1.000" oninput="convertCurrency()">
+            <div id="convResult" style="margin-top: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; color: #28a745;">
+                ≈ 0.00 PHP
+            </div>
+            <p style="font-size: 0.65rem; color: #999; text-align: center; margin-top: 5px;">Rate: 1 KWD = 180.00 PHP</p>
+        </div>
     </div>
 
     <div class="card" style="border-top: 3px solid #007bff;">
@@ -98,35 +117,21 @@
         <button class="btn" style="background: #007bff; border-color: #007bff; color: white;" onclick="checkStatus()">Check My Balance</button>
     </div>
 
-    <div class="grid">
-        <div class="card">
-            <h3 style="margin-top:0;">Loan Calculator</h3>
-            <input type="number" id="amount" placeholder="Amount (₱)">
-            <button class="btn" onclick="calculate()">Calculate 8%</button>
-            <div id="result" style="display:none; margin-top: 10px; font-weight: bold; color: var(--accent); text-align: center;"></div>
-        </div>
-
-        <div class="card">
-            <h3 style="margin-top:0;">Quick Info</h3>
-            <p style="font-size: 0.8rem; line-height: 1.5;">● 8% Fixed Monthly Interest<br>● Fast 24-hour Approval<br>● Send Receipt via WhatsApp</p>
-        </div>
-    </div>
-
     <div class="card">
         <h3 style="text-align: center; margin-top:0;">💳 Payment Center</h3>
+        <div class="payment-item" style="border-color: #00bfa5;">
+            <div><strong>WAMD</strong><br><small>+965 6561 0383</small></div>
+            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem; background: #00bfa5; border: none; color: white;" onclick="window.location.href='https://wa.me/96565610383?text=I%20want%20to%20pay%20via%20WAMD.'">Pay via WAMD</button>
+        </div>
         <div class="payment-item">
             <div><strong>GCash / Maya</strong><br><small>0956 418 4511</small></div>
             <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Receipt.'">Receipt</button>
         </div>
-        <div class="payment-item" style="border-color: #00bfa5;">
-            <div><strong>WABD</strong><br><small>+965 6561 0383</small></div>
-            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem; background: #00bfa5; border: none; color: white;" onclick="window.location.href='https://wa.me/96565610383?text=I%20want%20to%20pay%20via%20WABD.'">Pay via WABD</button>
-        </div>
     </div>
 
     <div class="card" style="text-align: center; border: none;">
-        <button class="btn" style="width: auto; padding: 12px 40px; background: #25d366; color: white; border: none;" onclick="window.location.href='mailto:devinostaadin@aol.com'">
-            ✉️ Email Official Support
+        <button class="btn" style="width: auto; padding: 12px 40px; background: #25d366; color: white; border: none;" onclick="window.location.href='https://wa.me/96565610383'">
+            💬 Contact Official Support
         </button>
     </div>
 </div>
@@ -134,6 +139,9 @@
 <footer>&copy; 2026 The 8% Lending • Trusted Financial Partner</footer>
 
 <script>
+    // --- SET YOUR EXCHANGE RATE HERE ---
+    const KWD_TO_PHP_RATE = 180.00; 
+
     function checkSitePassword() {
         const pass = document.getElementById('sitePass').value;
         if (pass === "8lending") {
@@ -153,14 +161,23 @@
             const interest = amount * 0.08;
             const total = parseFloat(amount) + interest;
             resultDiv.style.display = "block";
-            resultDiv.innerHTML = `Monthly Interest: ₱${interest.toLocaleString()}<br>Total Repayment: ₱${total.toLocaleString()}`;
+            resultDiv.innerHTML = `Interest (8%): ${interest.toFixed(3)} KWD<br>Total: ${total.toFixed(3)} KWD`;
+        }
+    }
+
+    function convertCurrency() {
+        const kwd = document.getElementById('kwdInput').value;
+        const resultDiv = document.getElementById('convResult');
+        if(kwd >= 0) {
+            const php = kwd * KWD_TO_PHP_RATE;
+            resultDiv.innerHTML = `≈ ${php.toLocaleString(undefined, {minimumFractionDigits: 2})} PHP`;
         }
     }
 
     function checkStatus() {
         const inv = document.getElementById('invoiceNum').value;
         if(inv.trim() === "") { alert("Enter Invoice #"); return; }
-        window.location.href = `https://wa.me/639564184511?text=Hi!%20Checking%20status%20for%20Invoice%20%23${inv}`;
+        window.location.href = `https://wa.me/96565610383?text=Hi!%20Checking%20status%20for%20Invoice%20%23${inv}`;
     }
 
     function toggleMenu() {
