@@ -6,13 +6,15 @@
     <title>The 8% Lending</title>
     <style>
         :root {
-            --primary: #1a1a1a; /* Black from logo */
-            --accent: #ffc107;  /* Gold from logo */
+            --primary: #1a1a1a; 
+            --accent: #ffc107;  
             --bg: #fdfdfd;
             --white: #ffffff;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: #333; }
-        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; border-bottom: 5px solid var(--accent); }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        
+        /* Changed header to White so the logo blends in */
+        header { background: var(--white); color: var(--primary); padding: 2rem 1rem; text-align: center; border-bottom: 5px solid var(--accent); }
         
         .logo-image { 
             max-width: 280px; 
@@ -26,14 +28,14 @@
 
         .card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 3px solid var(--accent); }
         
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
         .btn { background: var(--primary); color: var(--accent); border: 2px solid var(--accent); padding: 15px; cursor: pointer; width: 100%; font-size: 1.1rem; border-radius: 6px; font-weight: bold; transition: 0.3s; }
         .btn:hover { background: var(--accent); color: var(--primary); }
         
         #result { margin-top: 15px; padding: 15px; background: #fff9e6; border-radius: 5px; color: #856404; font-weight: bold; text-align: center; border: 1px solid var(--accent); }
         
         .requirements { list-style: none; padding: 0; }
-        .requirements li::before { content: "● "; color: var(--accent); font-weight: bold; padding-right: 8px; }
+        .requirements li::before { content: "● "; color: var(--accent); padding-right: 8px; }
         
         footer { text-align: center; padding: 2rem; color: #7f8c8d; font-size: 0.8rem; }
     </style>
@@ -41,7 +43,7 @@
 <body>
 
 <header>
-    <img src="The 8% Lending 2.png" alt="The 8% Lending Logo" class="logo-image">
+    <img src="The%208%25%20Lending%202.png" alt="The 8% Lending Logo" class="logo-image">
 </header>
 
 <div class="container">
@@ -73,6 +75,7 @@
         
         <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
             <button class="btn" style="width: auto; padding: 12px 30px;" onclick="window.location.href='mailto:your-email@gmail.com'">Email Us</button>
+            
             <button class="btn" style="width: auto; padding: 12px 30px; background: var(--accent); color: var(--primary);" onclick="window.location.href='https://m.me/yourpage'">Messenger</button>
         </div>
     </div>
