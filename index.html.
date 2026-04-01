@@ -6,55 +6,105 @@
     <title>Professional Lending Services</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #27ae60;
-            --light: #ecf0f1;
+            --primary: #1a252f; /* Deep Navy */
+            --accent: #27ae60;  /* Professional Green */
+            --bg: #f4f7f6;
+            --white: #ffffff;
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; line-height: 1.6; }
-        header { background: var(--primary); color: white; padding: 2rem; text-align: center; }
-        .container { max-width: 800px; margin: auto; padding: 20px; }
-        .calc-box { background: var(--light); padding: 25px; border-radius: 10px; border-left: 5px solid var(--accent); }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-        .btn { background: var(--accent); color: white; border: none; padding: 12px 20px; cursor: pointer; width: 100%; font-size: 1.1rem; border-radius: 5px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: #333; }
+        header { background: var(--primary); color: white; padding: 3rem 1rem; text-align: center; }
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+        .card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .btn { background: var(--accent); color: white; border: none; padding: 15px; cursor: pointer; width: 100%; font-size: 1.1rem; border-radius: 6px; font-weight: bold; }
         .btn:hover { background: #219150; }
-        #result { margin-top: 20px; font-weight: bold; font-size: 1.2rem; color: var(--primary); }
+        
+        #result { margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 5px; color: #2e7d32; font-weight: bold; text-align: center; line-height: 1.5; }
+        
+        .requirements { list-style: none; padding: 0; }
+        .requirements li::before { content: "✓ "; color: var(--accent); font-weight: bold; }
+        
+        footer { text-align: center; padding: 2rem; color: #7f8c8d; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Fast & Flexible Lending</h1>
-    <p>Your partner in financial growth</p>
+    <h1>LEND PRO</h1>
+    <p>Secure. Fast. Reliable. Financial solutions tailored for you.</p>
 </header>
 
 <div class="container">
-    <h2>Estimate Your Loan</h2>
-    <div class="calc-box">
-        <label>Loan Amount (₱)</label>
-        <input type="number" id="amount" placeholder="Enter amount (e.g. 5000)">
-        
-        <button class="btn" onclick="calculate()">Calculate Repayment</button>
-        <div id="result"></div>
+    <div class="grid">
+        <div class="card">
+            <h3>Loan Calculator</h3>
+            <p>Check your monthly repayment at 8% interest.</p>
+            <label>Amount to Borrow (₱)</label>
+            <input type="number" id="amount" placeholder="e.g. 10,000">
+            <button class="btn" onclick="calculate()">Calculate Now</button>
+            <div id="result" style="display:none;"></div>
+        </div>
+
+        <div class="card">
+            <h3>Basic Requirements</h3>
+            <ul class="requirements">
+                <li>Valid Government ID</li>
+                <li>Proof of Income (Payslip)</li>
+                <li>Proof of Billing (Electricity/Water)</li>
+                <li>Active Mobile Number</li>
+            </ul>
+        </div>
     </div>
 
-    <h3>Why Choose Us?</h3>
-    <ul>
-        <li><strong>Quick Approval:</strong> Simple requirements and fast processing.</li>
-        <li><strong>Transparent Terms:</strong> No hidden charges; see your total before you borrow.</li>
-        <li><strong>Professional Support:</strong> Dedicated assistance for your financial needs.</li>
-    </ul>
+    <div class="card" style="margin-top: 20px; text-align: center;">
+        <h3>Ready to Apply?</h3>
+        <p>Visit our office or message us directly to start your application.</p>
+        <p><strong>Location:</strong> Iloilo City</p>
+        
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
+            <button class="btn" style="width: auto; padding: 15px 40px;" onclick="window.location.href='mailto:your-email@example.com?subject=Loan Inquiry'">
+                Email Inquiry
+            </button>
+            <button class="btn" style="width: auto; padding: 15px 40px; background: #0084ff;" onclick="window.location.href='https://m.me/your-facebook-page'">
+                Message on Messenger
+            </button>
+        </div>
+    </div>
 </div>
+
+<footer>
+    &copy; 2026 Professional Lending Services. All rights reserved.
+</footer>
 
 <script>
     function calculate() {
         const amount = document.getElementById('amount').value;
+        const resultDiv = document.getElementById('result');
+        
         if(amount > 0) {
-            // Using a standard 8% monthly calculation for the estimate
-            const total = amount * 1.08;
-            document.getElementById('result').innerHTML = 
-                "Total Repayment (1 Month): ₱" + total.toLocaleString();
+            const interest = amount * 0.08;
+            const total = parseFloat(amount) + interest;
+            
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = `
+                <div style="border-bottom: 1px solid #c8e6c9; margin-bottom: 5px; padding-bottom: 5px;">
+                    Principal: ₱${parseFloat(amount).toLocaleString()}
+                </div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: normal;">
+                    Monthly Interest (8%): ₱${interest.toLocaleString()}
+                </div>
+                <div style="font-size: 1.3rem; margin-top: 5px;">
+                    Total Due: ₱${total.toLocaleString()}
+                </div>
+            `;
         } else {
-            document.getElementById('result').innerHTML = "Please enter a valid amount.";
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "Please enter a valid amount.";
         }
     }
 </script>
