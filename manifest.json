@@ -1,15 +1,18 @@
 {
   "name": "The 8% Lending",
   "short_name": "8% Lending",
+  "description": "Official Private Lending Portal",
   "start_url": "index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#1a1a1a",
-  "theme_color": "#ffc107",
+  "theme_color": "#1a1a1a",
   "icons": [
     {
-      "src": "The 8% Lending 2.png",
+      "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
