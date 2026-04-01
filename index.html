@@ -8,16 +8,16 @@
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="8% Lending">
     <link rel="apple-touch-icon" href="icon.png?refresh=999">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#ffffff">
 
     <style>
         :root {
             --primary: #1a1a1a;
             --accent: #ffc107;
-            --bg: #f5f5f5;
+            --bg: #f8f9fa;
             --card-bg: #ffffff;
             --text: #333;
             --border: #eeeeee;
@@ -34,39 +34,48 @@
         }
 
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.2s; overflow-x: hidden; }
-        
-        /* Login Overlay Removed as requested */
 
         header { 
-            background: #000000; 
-            padding: 3rem 1rem; 
+            background: #ffffff; /* Switched to White */
+            padding: 2rem 1rem; 
             text-align: center; 
             border-bottom: 4px solid var(--accent); 
             position: relative; 
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 160px;
+            min-height: 140px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+        
         .logo-image { 
             height: auto; 
-            width: 320px; 
-            max-width: 95%; 
+            width: 300px; 
+            max-width: 90%; 
             display: block;
             margin: 0 auto;
-            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5));
         }
+
         .settings-container { position: absolute; top: 15px; right: 15px; z-index: 10; }
-        .settings-btn { background: #1a1a1a; color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+        .settings-btn { 
+            background: #f1f1f1; 
+            color: #333; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            padding: 6px 10px; 
+            cursor: pointer; 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+        }
         
-        .options-menu { display: none; position: absolute; right: 0; top: 40px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; width: 140px; z-index: 100; padding: 10px; }
+        .options-menu { display: none; position: absolute; right: 0; top: 40px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; width: 140px; z-index: 100; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .options-menu button { width: 100%; padding: 8px; margin-bottom: 5px; border: none; background: var(--bg); color: var(--text); border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.8rem; }
 
         .container { max-width: 900px; margin: auto; padding: 20px; transition: 0.6s; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
 
-        .card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); border-top: 3px solid var(--accent); margin-bottom: 15px; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); border-top: 3px solid var(--accent); margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         
         .warning-card { border-top: 4px solid var(--danger); background: #fff5f5; color: #a94442; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; }
         .dark-mode .warning-card { background: #2d1a1a; color: #ff9999; border-color: var(--danger); }
@@ -88,7 +97,7 @@
             <button onclick="setTheme('dark')">🌙 Dark Mode</button>
         </div>
     </div>
-    <img src="icon.png?nocache=123456" alt="The 8% Lending Logo" class="logo-image">
+    <img src="icon.png?nocache=fresh" alt="The 8% Lending Logo" class="logo-image">
 </header>
 
 <div class="container" id="main-content">
@@ -204,5 +213,20 @@
     }
 
     function setTheme(mode) {
-        if (mode === 'dark') { document.body.classList.add('dark-mode'); }
-        else { document.body.classList.remove
+        if (mode === 'dark') { 
+            document.body.classList.add('dark-mode'); 
+            document.querySelector('header').style.background = '#000000';
+            document.querySelector('.settings-btn').style.background = '#1a1a1a';
+            document.querySelector('.settings-btn').style.color = '#ffc107';
+        }
+        else { 
+            document.body.classList.remove('dark-mode'); 
+            document.querySelector('header').style.background = '#ffffff';
+            document.querySelector('.settings-btn').style.background = '#f1f1f1';
+            document.querySelector('.settings-btn').style.color = '#333';
+        }
+        document.getElementById('optionsMenu').style.display = 'none';
+    }
+</script>
+</body>
+</html>
