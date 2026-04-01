@@ -1,0 +1,15 @@
+{
+  "name": "The 8% Lending",
+  "short_name": "8% Lending",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#ffc107",
+  "icons": [
+    {
+      "src": "The 8% Lending 2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
