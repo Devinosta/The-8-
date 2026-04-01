@@ -6,43 +6,71 @@
     <title>The 8% Lending</title>
     <style>
         :root {
-            --primary: #1a1a1a; 
-            --accent: #ffc107;  
+            --primary: #1a1a1a;
+            --accent: #ffc107;
             --bg: #fdfdfd;
-            --white: #ffffff;
-        }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
-        
-        /* Changed header to White so the logo blends in */
-        header { background: var(--white); color: var(--primary); padding: 2rem 1rem; text-align: center; border-bottom: 5px solid var(--accent); }
-        
-        .logo-image { 
-            max-width: 280px; 
-            height: auto; 
-            margin-bottom: 10px;
+            --card-bg: #ffffff;
+            --text: #333;
+            --border: #ddd;
         }
 
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --primary: #000000;
+            --accent: #ffc107;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --text: #e0e0e0;
+            --border: #333;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.3s; }
+        
+        header { background: var(--card-bg); padding: 2rem 1rem; text-align: center; border-bottom: 5px solid var(--accent); position: relative; }
+        
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-image { max-width: 280px; height: auto; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
-        .card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 3px solid var(--accent); }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 3px solid var(--accent); transition: 0.3s; }
         
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--text); box-sizing: border-box; }
         .btn { background: var(--primary); color: var(--accent); border: 2px solid var(--accent); padding: 15px; cursor: pointer; width: 100%; font-size: 1.1rem; border-radius: 6px; font-weight: bold; transition: 0.3s; }
         .btn:hover { background: var(--accent); color: var(--primary); }
         
-        #result { margin-top: 15px; padding: 15px; background: #fff9e6; border-radius: 5px; color: #856404; font-weight: bold; text-align: center; border: 1px solid var(--accent); }
+        #result { margin-top: 15px; padding: 15px; background: rgba(255, 193, 7, 0.1); border-radius: 5px; color: var(--accent); font-weight: bold; text-align: center; border: 1px solid var(--accent); }
         
         .requirements { list-style: none; padding: 0; }
         .requirements li::before { content: "● "; color: var(--accent); padding-right: 8px; }
         
+        .payment-item { padding: 15px; border: 1.5px solid var(--border); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: rgba(255,255,255,0.02); }
+
         footer { text-align: center; padding: 2rem; color: #7f8c8d; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
+    <button class="theme-toggle" onclick="toggleDarkMode()" id="themeBtn">🌙</button>
     <img src="The%208%25%20Lending%202.png" alt="The 8% Lending Logo" class="logo-image">
 </header>
 
@@ -50,10 +78,10 @@
     <div class="grid">
         <div class="card">
             <h3>Loan Calculator</h3>
-            <p>Calculate your monthly repayment at our standard 8% rate.</p>
-            <label>Amount to Borrow (₱)</label>
+            <p>Calculate your monthly repayment at 8%.</p>
+            <label>Amount (₱)</label>
             <input type="number" id="amount" placeholder="Enter amount">
-            <button class="btn" onclick="calculate()">Calculate Now</button>
+            <button class="btn" onclick="calculate()">Calculate</button>
             <div id="result" style="display:none;"></div>
         </div>
 
@@ -61,29 +89,43 @@
             <h3>Requirements</h3>
             <ul class="requirements">
                 <li>Valid Government ID</li>
-                <li>Latest Payslip / Proof of Income</li>
+                <li>Latest Payslip / Income</li>
                 <li>Proof of Billing</li>
                 <li>Active Mobile Number</li>
             </ul>
         </div>
     </div>
 
-    <div class="card" style="margin-top: 20px; text-align: center; background: var(--primary); color: white;">
-        <h3 style="color: var(--accent);">Get Started Today</h3>
-        <p>Message us directly to start your application.</p>
-        <p>📍 Location: Iloilo City</p>
-        
-        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
-            <button class="btn" style="width: auto; padding: 12px 30px;" onclick="window.location.href='mailto:your-email@gmail.com'">Email Us</button>
-            
-            <button class="btn" style="width: auto; padding: 12px 30px; background: var(--accent); color: var(--primary);" onclick="window.location.href='https://m.me/yourpage'">Messenger</button>
+    <div class="card" style="margin-top: 20px;">
+        <h3 style="text-align: center;">💳 Payment Center</h3>
+        <div class="payment-item" style="border-color: #007bff;">
+            <div><strong>GCash</strong><br><small>0956 418 4511</small></div>
+            <button class="btn" style="width: auto; padding: 8px 15px; background: #007bff; border: none; color: white; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20GCash%20receipt.'">Receipt</button>
         </div>
+        <div class="payment-item" style="border-color: #2ecc71;">
+            <div><strong>Maya</strong><br><small>0956 418 4511</small></div>
+            <button class="btn" style="width: auto; padding: 8px 15px; background: #2ecc71; border: none; color: white; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Maya%20receipt.'">Receipt</button>
+        </div>
+        <div class="payment-item" style="border-color: #003087;">
+            <div><strong>PayPal</strong><br><small>Request link via chat</small></div>
+            <button class="btn" style="width: auto; padding: 8px 15px; background: #003087; border: none; color: white; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Requesting%20PayPal%20link.'">Link</button>
+        </div>
+        <div class="payment-item">
+            <div><strong>Cash</strong><br><small>Schedule meet-up</small></div>
+            <button class="btn" style="width: auto; padding: 8px 15px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=I%20want%20to%20pay%20via%20Cash.'">Schedule</button>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px; text-align: center; background: var(--primary); color: var(--accent);">
+        <h3>Get Started Today</h3>
+        <p style="color: white;">📍 Location: Iloilo City</p>
+        <button class="btn" style="width: auto; padding: 12px 30px; background: #25d366; color: white; border: none;" onclick="window.location.href='https://wa.me/639564184511'">
+            💬 WhatsApp Us
+        </button>
     </div>
 </div>
 
-<footer>
-    &copy; 2026 The 8% Lending. All rights reserved.
-</footer>
+<footer>&copy; 2026 The 8% Lending.</footer>
 
 <script>
     function calculate() {
@@ -96,7 +138,18 @@
             resultDiv.innerHTML = `Interest: ₱${interest.toLocaleString()}<br>Total Due: ₱${total.toLocaleString()}`;
         }
     }
-</script>
 
+    function toggleDarkMode() {
+        const body = document.body;
+        const btn = document.getElementById('themeBtn');
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            btn.innerHTML = "☀️";
+        } else {
+            btn.innerHTML = "🌙";
+        }
+    }
+</script>
 </body>
 </html>
