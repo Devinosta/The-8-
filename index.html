@@ -8,77 +8,76 @@
         :root {
             --primary: #1a1a1a;
             --accent: #ffc107;
-            --bg: #fdfdfd;
+            --bg: #f5f5f5;
             --card-bg: #ffffff;
             --text: #333;
-            --border: #ddd;
+            --border: #eeeeee;
         }
 
-        /* Dark Mode Variables */
         body.dark-mode {
             --primary: #000000;
             --accent: #ffc107;
             --bg: #121212;
             --card-bg: #1e1e1e;
             --text: #e0e0e0;
-            --border: #333;
+            --border: #333333;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.3s; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.2s; }
         
-        header { background: var(--card-bg); padding: 2rem 1rem; text-align: center; border-bottom: 5px solid var(--accent); position: relative; }
+        /* Header without shadows */
+        header { background: var(--card-bg); padding: 2rem 1rem; text-align: center; border-bottom: 4px solid var(--accent); position: relative; }
         
-        /* Dark Mode Toggle Button */
-        .theme-toggle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .logo-image { max-width: 250px; height: auto; }
 
-        .logo-image { max-width: 280px; height: auto; }
-        .container { max-width: 900px; margin: auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* Settings Toggle */
+        .settings-container { position: absolute; top: 20px; right: 20px; }
+        .settings-btn { background: var(--primary); color: var(--accent); border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 1rem; font-weight: bold; }
+        
+        .options-menu { 
+            display: none; position: absolute; right: 0; top: 45px; 
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 8px; width: 150px; z-index: 100; padding: 10px;
+        }
+        .options-menu button { width: 100%; padding: 10px; margin-bottom: 5px; border: none; background: var(--bg); color: var(--text); border-radius: 5px; cursor: pointer; text-align: left; font-size: 0.9rem; }
+        .options-menu button:hover { background: var(--accent); color: var(--primary); }
+
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
-        .card { background: var(--card-bg); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 3px solid var(--accent); transition: 0.3s; }
+        /* Card with NO shadows, just clean borders */
+        .card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); border-top: 3px solid var(--accent); transition: 0.2s; }
         
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--text); box-sizing: border-box; }
-        .btn { background: var(--primary); color: var(--accent); border: 2px solid var(--accent); padding: 15px; cursor: pointer; width: 100%; font-size: 1.1rem; border-radius: 6px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: var(--accent); color: var(--primary); }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); box-sizing: border-box; font-size: 1rem; }
         
-        #result { margin-top: 15px; padding: 15px; background: rgba(255, 193, 7, 0.1); border-radius: 5px; color: var(--accent); font-weight: bold; text-align: center; border: 1px solid var(--accent); }
+        .btn { background: var(--primary); color: var(--accent); border: 1px solid var(--accent); padding: 14px; cursor: pointer; width: 100%; font-size: 1rem; border-radius: 6px; font-weight: bold; transition: 0.2s; }
+        .btn:hover { opacity: 0.8; }
         
-        .requirements { list-style: none; padding: 0; }
-        .requirements li::before { content: "● "; color: var(--accent); padding-right: 8px; }
+        #result { margin-top: 15px; padding: 15px; background: rgba(255, 193, 7, 0.05); border-radius: 6px; color: var(--accent); font-weight: bold; text-align: center; border: 1px solid var(--accent); }
         
-        .payment-item { padding: 15px; border: 1.5px solid var(--border); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: rgba(255,255,255,0.02); }
+        .payment-item { padding: 12px; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 
-        footer { text-align: center; padding: 2rem; color: #7f8c8d; font-size: 0.8rem; }
+        footer { text-align: center; padding: 3rem; color: #999; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 40px; }
     </style>
 </head>
 <body>
 
 <header>
-    <button class="theme-toggle" onclick="toggleDarkMode()" id="themeBtn">🌙</button>
+    <div class="settings-container">
+        <button class="settings-btn" onclick="toggleMenu()">⚙️ Options</button>
+        <div class="options-menu" id="optionsMenu">
+            <button onclick="setTheme('light')">☀️ Light Mode</button>
+            <button onclick="setTheme('dark')">🌙 Dark Mode</button>
+        </div>
+    </div>
     <img src="The%208%25%20Lending%202.png" alt="The 8% Lending Logo" class="logo-image">
 </header>
 
 <div class="container">
     <div class="grid">
         <div class="card">
-            <h3>Loan Calculator</h3>
-            <p>Calculate your monthly repayment at 8%.</p>
+            <h3 style="margin-top:0;">Loan Calculator</h3>
             <label>Amount (₱)</label>
             <input type="number" id="amount" placeholder="Enter amount">
             <button class="btn" onclick="calculate()">Calculate</button>
@@ -86,46 +85,36 @@
         </div>
 
         <div class="card">
-            <h3>Requirements</h3>
-            <ul class="requirements">
-                <li>Valid Government ID</li>
-                <li>Latest Payslip / Income</li>
-                <li>Proof of Billing</li>
-                <li>Active Mobile Number</li>
-            </ul>
+            <h3 style="margin-top:0;">Requirements</h3>
+            <p style="font-size: 0.9rem; line-height: 1.6;">● Valid Government ID<br>● Latest Payslip / Income<br>● Proof of Billing<br>● Active Mobile Number</p>
         </div>
     </div>
 
     <div class="card" style="margin-top: 20px;">
-        <h3 style="text-align: center;">💳 Payment Center</h3>
-        <div class="payment-item" style="border-color: #007bff;">
+        <h3 style="text-align: center; margin-top:0;">💳 Payment Center</h3>
+        <div class="payment-item">
             <div><strong>GCash</strong><br><small>0956 418 4511</small></div>
-            <button class="btn" style="width: auto; padding: 8px 15px; background: #007bff; border: none; color: white; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20GCash%20receipt.'">Receipt</button>
-        </div>
-        <div class="payment-item" style="border-color: #2ecc71;">
-            <div><strong>Maya</strong><br><small>0956 418 4511</small></div>
-            <button class="btn" style="width: auto; padding: 8px 15px; background: #2ecc71; border: none; color: white; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Maya%20receipt.'">Receipt</button>
-        </div>
-        <div class="payment-item" style="border-color: #003087;">
-            <div><strong>PayPal</strong><br><small>Request link via chat</small></div>
-            <button class="btn" style="width: auto; padding: 8px 15px; background: #003087; border: none; color: white; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Requesting%20PayPal%20link.'">Link</button>
+            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20GCash%20receipt.'">Receipt</button>
         </div>
         <div class="payment-item">
-            <div><strong>Cash</strong><br><small>Schedule meet-up</small></div>
-            <button class="btn" style="width: auto; padding: 8px 15px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=I%20want%20to%20pay%20via%20Cash.'">Schedule</button>
+            <div><strong>Maya</strong><br><small>0956 418 4511</small></div>
+            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=Sending%20Maya%20receipt.'">Receipt</button>
+        </div>
+        <div class="payment-item">
+            <div><strong>Cash</strong><br><small>Iloilo City Area</small></div>
+            <button class="btn" style="width: auto; padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='https://wa.me/639564184511?text=I%20want%20to%20pay%20via%20Cash.'">Schedule</button>
         </div>
     </div>
 
-    <div class="card" style="margin-top: 20px; text-align: center; background: var(--primary); color: var(--accent);">
+    <div class="card" style="margin-top: 20px; text-align: center; background: var(--primary); color: var(--accent); border: none;">
         <h3>Get Started Today</h3>
-        <p style="color: white;">📍 Location: Iloilo City</p>
-        <button class="btn" style="width: auto; padding: 12px 30px; background: #25d366; color: white; border: none;" onclick="window.location.href='https://wa.me/639564184511'">
+        <button class="btn" style="width: auto; padding: 12px 40px; background: #25d366; color: white; border: none;" onclick="window.location.href='https://wa.me/639564184511'">
             💬 WhatsApp Us
         </button>
     </div>
 </div>
 
-<footer>&copy; 2026 The 8% Lending.</footer>
+<footer>&copy; 2026 The 8% Lending • Iloilo City</footer>
 
 <script>
     function calculate() {
@@ -139,15 +128,24 @@
         }
     }
 
-    function toggleDarkMode() {
-        const body = document.body;
-        const btn = document.getElementById('themeBtn');
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
-            btn.innerHTML = "☀️";
+    function toggleMenu() {
+        const menu = document.getElementById('optionsMenu');
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function setTheme(mode) {
+        if (mode === 'dark') {
+            document.body.classList.add('dark-mode');
         } else {
-            btn.innerHTML = "🌙";
+            document.body.classList.remove('dark-mode');
+        }
+        document.getElementById('optionsMenu').style.display = 'none';
+    }
+
+    // Close menu when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.settings-btn')) {
+            document.getElementById('optionsMenu').style.display = 'none';
         }
     }
 </script>
